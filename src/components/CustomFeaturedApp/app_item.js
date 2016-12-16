@@ -5,11 +5,17 @@ var appBarItem = {
   link:'https://gmail.com'
 }
 
-var nh_app_bar_global_list = [appBarItem, appBarItem]; 
+var nhAppBarGlobalData = {
+  dataArr: [appBarItem, appBarItem],
+  visitTypeId: '322323',
+  visitTypeName: 'Nurse Department'
+}
+
 // unlimited, received from server side
 
 var nh_featured_app_list = [appBarItem]; // 6 max
 
 var local_app_store = {
-  'routeId': [appBarItem,appBarItem]
+  typeId: '33333',
+  featuredApps: []
 }
