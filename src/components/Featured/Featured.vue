@@ -21,14 +21,11 @@
     name: 'Featured',
     components: { AppPin, AppPinEmpty },
     created: function () {
-      console.log('featured apps are: ')
-      console.log(this.featuredApps)
     },
     props: ['featuredApps'],
     methods: {
       toggleCustomApps: function () {
         this.$emit('toggle')
-        console.log('Toggle custom apps')
       }
     }
   }

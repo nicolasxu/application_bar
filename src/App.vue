@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{'in-edit': showCustom}" >
+  <div id="app" :class="{'in-edit': showCustom}">
     <!--<featured-application></featured-application>-->
     <!--<custome-featured-application v-if="showCustom"></custome-featured-application>-->
     <featured :featuredApps="featuredApps" @toggle="toggleCustom"></featured>
@@ -14,6 +14,8 @@
 import * as util from './components/appBarUtil.js'
 import Featured from './components/Featured/Featured'
 import CustomFeatured from './components/CustomFeatured/CustomFeatured.vue'
+import channel from './messageChannel.js'
+
 export default {
   name: 'app',
   components: {
@@ -26,6 +28,8 @@ export default {
     console.log('This application bar init...')
     this.globalAppListData = util.getGlobalListData()
     this.featuredApps = util.getFeaturedApps()
+    console.log(channel)
+    channel.$on('add', this.addToFeatured)
   },
   methods: {
     addToFeatured: function (uid) {

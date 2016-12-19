@@ -4,6 +4,7 @@ var appItem = {
   aId: '',
   name: 'Outlook',
   description: 'Outlook Description',
+  category: 'general',
   imgUrl: '/abc/abc/img.png',
   isDefaultApp: false,
   link: 'https://gmail.com'
@@ -12,7 +13,8 @@ var appItem = {
 for (var i = 0; i < 30; i++) {
   globalList.push(JSON.parse(JSON.stringify(appItem))) // copy item and push to array
   globalList[i].name = globalList[i].name + i
-  globalList[i].aid = 1000 + i
+  globalList[i].aId = 1000 + i
+  globalList[i].category = globalList[i].category + i % 6
 }
 
 globalList[3].isDefaultApp = true

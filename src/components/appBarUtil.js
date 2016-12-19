@@ -1,6 +1,8 @@
 var mockGlobalAppArr = require('./mockupData.js')
 
 var cachedGlobalList = {}
+var featuredApps = []
+
 module.exports = {
   saveLocalFeaturedApp: saveLocalFeaturedApp,
   getFeaturedApps: getFeaturedApps,
@@ -13,6 +15,7 @@ function getGlobalListData () {
   cachedGlobalList = {
     dataArr: mockGlobalAppArr,
     visitTypeId: '322323',
+    canEdit: true,
     visitTypeName: 'Nurse Department'
   }
   return cachedGlobalList
@@ -29,10 +32,14 @@ function getFeaturedApps (visitTypeId) {
    load from global list,
   */
   var MAX_APP_COUNT = 6
+  if (featuredApps.length > 0) {
+    return featuredApps
+  }
   var localFeaturedApps = JSON.parse(localStorage.getItem(cachedGlobalList.visitTypeId))
   if (localFeaturedApps && localFeaturedApps.length > 0) {
     // use local storage data
-    return localFeaturedApps.slice(0, MAX_APP_COUNT)
+    featuredApps = localFeaturedApps.slice(0, MAX_APP_COUNT)
+    return featuredApps
   } else {
     // get it from global list
     var tempArr = []
@@ -41,6 +48,8 @@ function getFeaturedApps (visitTypeId) {
         tempArr.push(app)
       }
     })
-    return tempArr.slice(0, MAX_APP_COUNT)
+    featuredApps = tempArr.slice(0, MAX_APP_COUNT)
+    localStorage.setItem(cachedGlobalList.visitTypeId, JSON.stringify(featuredApps))
+    return featuredApps
   }
 }
