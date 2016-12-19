@@ -46,13 +46,10 @@ export default {
   },
   methods: {
     add: function () {
-      console.log('clicked')
-      // this.$emit('add', this.app.aId)
       channel.$emit('add', this.app.aId)
     },
     remove: function () {
-      console.log('remove clicked')
-      this.$emit('remove', this.add.aId)
+      channel.$emit('remove', this.app.aId)
     }
   }
 }

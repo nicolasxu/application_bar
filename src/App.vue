@@ -25,18 +25,20 @@ export default {
     return {showCustom: false}
   },
   created: function () {
-    console.log('This application bar init...')
     this.globalAppListData = util.getGlobalListData()
     this.featuredApps = util.getFeaturedApps()
     console.log(channel)
     channel.$on('add', this.addToFeatured)
+    channel.$on('remove', this.removeFromFeatured)
   },
   methods: {
-    addToFeatured: function (uid) {
-      console.log('Add ' + uid + ' to featured...')
+    addToFeatured: function (aId) {
+      console.log('Add catched... ' + aId + ' to featured...')
+      util.addFeatured(aId)
     },
-    removeFromFeatured: function (uid) {
-      console.log('Remove ' + uid + ' from featured... ')
+    removeFromFeatured: function (aId) {
+      console.log('Remove catched...' + aId + ' from featured... ')
+      util.removeFeatured(aId)
     },
     toggleCustom: function () {
       this.showCustom = !this.showCustom

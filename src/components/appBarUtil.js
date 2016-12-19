@@ -6,7 +6,9 @@ var featuredApps = []
 module.exports = {
   saveLocalFeaturedApp: saveLocalFeaturedApp,
   getFeaturedApps: getFeaturedApps,
-  getGlobalListData: getGlobalListData
+  getGlobalListData: getGlobalListData,
+  addFeatured: addFeatured,
+  removeFeatured: removeFeatured
 }
 
 function getGlobalListData () {
@@ -22,7 +24,35 @@ function getGlobalListData () {
 }
 
 function saveLocalFeaturedApp () {
+  localStorage.setItem(cachedGlobalList.visitTypeId, JSON.stringify(featuredApps))
+}
 
+function addFeatured (aId) {
+  var MAX_APP_COUNT = 6
+  if (featuredApps.length === MAX_APP_COUNT) {
+    return
+  }
+  for (var i = 0; i < cachedGlobalList.dataArr.length; i++) {
+    if (cachedGlobalList.dataArr[i].aId === aId) {
+      featuredApps.push(cachedGlobalList.dataArr[i])
+      saveLocalFeaturedApp()
+      return
+    }
+  }
+}
+
+function removeFeatured (aId) {
+  if (featuredApps.length === 0) {
+    return
+  }
+
+  for (var i = 0; i < featuredApps.length; i++) {
+    if (featuredApps[i].aId === aId) {
+      featuredApps.splice(i, 1)
+      saveLocalFeaturedApp()
+      break
+    }
+  }
 }
 
 function getFeaturedApps (visitTypeId) {

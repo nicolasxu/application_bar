@@ -5,7 +5,7 @@
       <div class="toggle-text"><a href="javascript:void(0)" @click.prevent="toggleCustomApps">Save and Close</a></div>
     </div>
     <div class="apppin-container">
-      <app-pin v-for="app in featuredApps" :app="app"></app-pin>
+      <app-pin v-for="app in apps" :app="app"></app-pin>
       <app-pin-empty v-if="featuredApps.length < 6"></app-pin-empty>
     </div>    
   </section>
@@ -21,6 +21,11 @@
     name: 'Featured',
     components: { AppPin, AppPinEmpty },
     created: function () {
+    },
+    data: function () {
+      return {
+        apps: this.featuredApps
+      }
     },
     props: ['featuredApps'],
     methods: {
