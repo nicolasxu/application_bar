@@ -1,7 +1,7 @@
 <template>
   <div class="app-pin">
-    <div class="rm-btn" @click="remove">X</div>
-    <div class="app-img">{{app.name}}</div>
+      <div class="rm-btn" @click="remove"></div>
+      <div class="app-img">{{app.name}}</div>
   </div>
 </template>
 
@@ -26,16 +26,24 @@
   .app-pin {
     display: inline-block;
     position: relative;
+    margin-left: 36px;
     .rm-btn {
       position: absolute;
+      top: -13px;
+      left: -13px;
+      display: inline-block;
+      background-image: url('./close_btn_NHINT.png');
+      // position: absolute;
       border-radius: 10px;
-      width: 10px;
-      height: 10px;
+      width: 25px;
+      height: 25px;
     }
     .app-img {
-      width: 100px;
-      height: 40px;
+      width: 165px;
+      height: 76px;
       background-color: lightslategrey;
     }
+    
+
   }
 </style>

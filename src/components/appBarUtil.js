@@ -4,10 +4,10 @@ var cachedGlobalList = {}
 module.exports = {
   saveLocalFeaturedApp: saveLocalFeaturedApp,
   getFeaturedApps: getFeaturedApps,
-  getGlobalList: getGlobalList
+  getGlobalListData: getGlobalListData
 }
 
-function getGlobalList () {
+function getGlobalListData () {
   // This data is first passed from back-end, and
   // exist in global space
   cachedGlobalList = {

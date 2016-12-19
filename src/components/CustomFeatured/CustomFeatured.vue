@@ -1,0 +1,26 @@
+<template>
+	<section>
+	  <category-selection :cats="categories"></category-selection>
+	  <app-list :list="globalList"></app-list>
+	</section>
+</template>
+
+<script>
+import CategorySelection from './CategorySelection'
+import AppList from './AppList'
+export default {
+  name: 'CustomeFeatured',
+  props: ['globalList'],
+  components: { CategorySelection, AppList },
+  computed: {
+    categories: function () {
+      // loop through global list to find categories
+    }
+  }
+}
+</script>
+
+
+<style lang="scss">
+	
+</style>

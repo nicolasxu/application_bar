@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{'in-edit': showCustom}" >
     <!--<featured-application></featured-application>-->
     <!--<custome-featured-application v-if="showCustom"></custome-featured-application>-->
-    <featured-apps :featuredApps="featuredApps"></featured-apps>
-    <custom-featured-apps v-if="showCustom"></custom-featured-apps>
+    <featured :featuredApps="featuredApps" @toggle="toggleCustom"></featured>
+    <custom-featured v-if="showCustom" :globalList="globalAppListData.dataArr"></custom-featured>
   </div>
 </template>
 <script>
@@ -12,18 +12,19 @@
 // to identify app, we need uid.
 
 import * as util from './components/appBarUtil.js'
-import FeaturedApps from './components/FeaturedApp/FeaturedApp'
+import Featured from './components/Featured/Featured'
+import CustomFeatured from './components/CustomFeatured/CustomFeatured.vue'
 export default {
   name: 'app',
   components: {
-    FeaturedApps
+    Featured, CustomFeatured
   },
   data: function () {
     return {showCustom: false}
   },
   created: function () {
     console.log('This application bar init...')
-    this.globalAppList = util.getGlobalList()
+    this.globalAppListData = util.getGlobalListData()
     this.featuredApps = util.getFeaturedApps()
   },
   methods: {
@@ -32,15 +33,21 @@ export default {
     },
     removeFromFeatured: function (uid) {
       console.log('Remove ' + uid + ' from featured... ')
+    },
+    toggleCustom: function () {
+      this.showCustom = !this.showCustom
     }
   }
 }
 </script>
-<style lang="scss">
-  #app-bar  {
-    position: absolute;
-    top: 0;
-    bottom: 0;
+<style lang="scss" scoped>
+ 
+  #app {
+    position: relative;
+    background-color: #f1f1f1;
     width: 100%;
+  }
+  #app.in-edit {
+    background-color: #fff6d7;
   }
 </style>
