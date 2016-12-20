@@ -1,17 +1,15 @@
 <template>
 	<section class="custom">
-	  <category-selection :cats="categories"></category-selection>
-	  <app-list :list="globalList"></app-list>
+	  <category-selection :cats="categories" :globalList="globalList"></category-selection>
 	</section>
 </template>
 
 <script>
 import CategorySelection from './CategorySelection'
-import AppList from './AppList'
 export default {
   name: 'CustomeFeatured',
   props: ['globalList'],
-  components: { CategorySelection, AppList },
+  components: { CategorySelection },
   computed: {
     categories: function () {
       // loop through global list to find categories

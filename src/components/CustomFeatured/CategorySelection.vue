@@ -11,18 +11,37 @@
 	  	</select>
 	  </div>
 		{{selectedCat}}
+    <div>
+      <app-list :list="selectedList"></app-list>
+    </div>
 	</div>
-
-
 </template>
 
 <script>
+import AppList from './AppList'
 export default {
   name: 'CategorySelection',
-  props: ['cats'],
+  props: ['cats', 'globalList'],
+  components: {AppList},
   data: function () {
     return {
       selectedCat: 'all'
+    }
+  },
+  computed: {
+    selectedList: function () {
+      if (this.selectedCat === 'all') {
+        return this.globalList
+      }
+      var selectedCategoryStr = this.selectedCat
+      var selectedList = []
+      var allApps = this.globalList
+      for (var i = 0; i < allApps.length; i++) {
+        if (allApps[i].category === selectedCategoryStr) {
+          selectedList.push(allApps[i])
+        }
+      }
+      return selectedList
     }
   }
 }
