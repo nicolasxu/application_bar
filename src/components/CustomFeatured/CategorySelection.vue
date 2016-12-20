@@ -4,13 +4,12 @@
 			<h3>All Applications</h3>
 	  </div>
 	  <div class="selection-container" >
-			<button class="all-btn">All</button>
+			<button class="all-btn" @click.prevent="setAll">All</button>
 	  	<select name="category-sel" v-model="selectedCat" class="cat-selector">
 	  		<option value="all">All</option>
 				<option v-for="cat in cats" :value="cat">{{cat}}</option>
 	  	</select>
 	  </div>
-		{{selectedCat}}
     <div>
       <app-list :list="selectedList"></app-list>
     </div>
@@ -42,6 +41,11 @@ export default {
         }
       }
       return selectedList
+    }
+  },
+  methods: {
+    setAll: function () {
+      this.selectedCat = 'all'
     }
   }
 }

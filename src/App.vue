@@ -2,8 +2,13 @@
   <div id="app" :class="{'in-edit': showCustom}">
     <!--<featured-application></featured-application>-->
     <!--<custome-featured-application v-if="showCustom"></custome-featured-application>-->
-    <featured :featuredApps="featuredApps" @toggle="toggleCustom"></featured>
-    <custom-featured v-if="showCustom" :globalList="globalAppListData.dataArr"></custom-featured>
+    <featured :featuredApps="featuredApps" :showCustom="showCustom" 
+    :canEdit="globalAppListData.canEdit"
+    @toggle="toggleCustom">
+    </featured>
+    <custom-featured v-if="showCustom" 
+    :globalList="globalAppListData.dataArr">
+    </custom-featured>
   </div>
 </template>
 <script>

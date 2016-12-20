@@ -2,10 +2,15 @@
   <section class="featured-apps">
     <div class="toggle-container">
       <div class="star-icon">Featured Applications</div>
-      <div class="toggle-text"><a href="javascript:void(0)" @click.prevent="toggleCustomApps">Save and Close</a></div>
+      <div class="toggle-text" v-if="canEdit">
+        <a href="javascript:void(0)" @click.prevent="toggleCustomApps">
+          <span v-if="!showCustom">Customize and View All</span>
+          <span v-if="showCustom">Save and Close</span>
+        </a>
+      </div>
     </div>
     <div class="apppin-container">
-      <app-pin v-for="app in apps" :app="app"></app-pin>
+      <app-pin v-for="app in apps" :app="app" :showCustom="showCustom"></app-pin>
       <app-pin-empty v-if="featuredApps.length < 6"></app-pin-empty>
     </div>    
   </section>
@@ -27,7 +32,7 @@
         apps: this.featuredApps
       }
     },
-    props: ['featuredApps'],
+    props: ['featuredApps', 'showCustom', 'canEdit'],
     methods: {
       toggleCustomApps: function () {
         this.$emit('toggle')
