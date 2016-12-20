@@ -5,9 +5,9 @@ var appItem = {
   name: 'Outlook',
   description: 'Outlook Description',
   category: 'general',
-  imgUrl: '/abc/abc/img.png',
+  imgUrl: '/abc/abc/img1.png',
   isDefaultApp: false,
-  link: 'https://gmail.com'
+  url: 'https://mail.google.com'
 }
 
 for (var i = 0; i < 30; i++) {
@@ -25,15 +25,3 @@ globalList[15].isDefaultApp = true
 globalList[18].isDefaultApp = true
 
 module.exports = globalList
-/*
-var appBarGlobalData = {
-  dataArr: [appBarItem, appBarItem],
-  visitTypeId: '322323',
-  visitTypeName: 'Nurse Department'
-}
-
-var local_app_store = {
-  typeId: '33333',
-  featuredApps: []
-}
-*/

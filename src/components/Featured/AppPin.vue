@@ -1,8 +1,15 @@
 <template>
   <div class="app-pin">
       <div class="rm-btn" @click="remove" v-show="showCustom"></div>
-      <div class="app-img" v-show="!showCustom">{{app.name}} the link</div>
-      <div class="app-img-custom" v-show="showCustom">{{app.name}} the image</div>
+      <div class="app-img" v-show="!showCustom">
+        <a :href="app.url" target="_blank">
+          <img :src="app.imgUrl" :alt="app.name">
+          {{app.name}} the link
+        </a>
+      </div>
+      <div class="app-img-custom" v-show="showCustom">
+       <img :src="app.imgUrl" :alt="app.name">
+      </div>
   </div>
 </template>
 

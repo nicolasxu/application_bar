@@ -2,6 +2,7 @@
 	<li class="item">
 		<div class="img-container">
 			IMAGE
+			<img :src="app.imgUrl" alt="app.name">
 		</div>
 		<div class="app">
 			<div class="title">
